@@ -5,6 +5,7 @@ import time
 bankroll = 1000
 game = True
 
+print(" ")
 print("Bonjour et bienvenue à la roulette du ZCasino !")
 print(" ")
 
@@ -15,11 +16,11 @@ while game:
     numero = -1
     while numero < 0 or numero > 50:
         try:
-            print("Veuillez choisir un numéro entre 0 et 50 :")
+            print("Veuillez choisir un numéro entre 0 et 50 avant de miser:")
             numero = input()
             numero = int(numero)
         except:
-            print("Vous n'avez pas saisi de numéro !")
+            print("Erreur de saisie !")
             print(" ")
             numero = -1
             continue
@@ -36,11 +37,12 @@ while game:
     mise = 0
     while mise <= 0 or mise > bankroll:
         try:
+            print(" ")
             print("Combien souhaitez-vous miser sur ce numéro {} ?".format(numero))
             mise = input()
             mise = int(mise)
         except:
-            print("Merci de miser la somme que vous souhaitez, en fonction de votre bankroll.")
+            print("Erreur de saisie !")
             print(" ")
             mise = 0
             continue
@@ -58,11 +60,11 @@ while game:
 
     print(" ")
     print("Les jeux sont faits, rien va plus...")
-    time.sleep(3)
+    time.sleep(1)
     print("*la bille tourne encore...*")
-    time.sleep(2)
+    time.sleep(1)
     print("*suspense...*")
-    time.sleep(2)
+    time.sleep(1)
     print(" ")
 
     # Le numéro sur lequel s'arrête la roulette
@@ -77,7 +79,7 @@ while game:
         print("Votre Bankroll est maintenant de {} euros.".format(bankroll))
     elif numero % 2 == roulette % 2:  # savoir si les deux numéros sont paires
         print("Bien, vous n'avez pas trouvé le bon numéro MAIS vous avez la bonne couleur !")
-        calcul_gain = mise * 2
+        calcul_gain = mise
         bankroll += calcul_gain
         print("Vous empochez donc {} euros et votre bankroll s'élève maintenant à {} euros !".format(calcul_gain,
                                                                                                      bankroll))
@@ -94,13 +96,19 @@ while game:
         print("Vous n'avez plus d'argent...")
     else:
         print("-----------------------")
-        print("Souhaitez-vous continuer à jouer ?")
-        reponse_jeu = input()
-        print(" ")
+        reponse_jeu = "x"
+        while reponse_jeu != "oui" and reponse_jeu != "non":
+            print("Souhaitez-vous continuer à jouer ? oui / non")
+            print(" ")
+            reponse_jeu = input()
+            reponse_jeu = str(reponse_jeu)
 
         if reponse_jeu == "oui":
             print("Super ! alors continuons !")
+            print(" ")
         else:
+            print(" ")
+            print("Vous repartez avec une somme de {} euros !".format(bankroll))
             game = False
 
 print(" ")
